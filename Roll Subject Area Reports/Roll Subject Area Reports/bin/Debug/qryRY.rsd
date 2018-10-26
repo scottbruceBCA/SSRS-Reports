@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>EDW</DataSourceReference>
+      <CommandText>SELECT        dimRollYear_SK, dimRollYear_BK, [Roll Year], StartDate_BK, EndDate_BK
+FROM            edw.dimRollYear AS RY
+WHERE        EXISTS
+                             (SELECT        1 AS Expr1
+                               FROM            edw.FactRollSummary AS AV
+                               WHERE        (RY.dimRollYear_SK = dimRollYear_SK))
+ORDER BY [Roll Year] DESC</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="dimRollYear_SK">
+        <DataField>dimRollYear_SK</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="dimRollYear_BK">
+        <DataField>dimRollYear_BK</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Roll_Year">
+        <DataField>Roll Year</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="StartDate_BK">
+        <DataField>StartDate_BK</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="EndDate_BK">
+        <DataField>EndDate_BK</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

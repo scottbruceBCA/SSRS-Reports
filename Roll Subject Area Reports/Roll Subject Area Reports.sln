@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Roll Subject Area Reports", "Roll Subject Area Reports\Roll Subject Area Reports.rptproj", "{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.Debug|Default.ActiveCfg = Debug
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.Debug|Default.Build.0 = Debug
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.Debug|Default.Deploy.0 = Debug
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.DebugLocal|Default.Build.0 = DebugLocal
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.Release|Default.ActiveCfg = Release
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.Release|Default.Build.0 = Release
+		{E12E44AC-A09D-4647-8BA5-9096E4B1B32B}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

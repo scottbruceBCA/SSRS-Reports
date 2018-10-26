@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="qryData">
+    <Query>
+      <DataSourceReference>EDW</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@p_RC">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+        </DataSetParameter>
+        <DataSetParameter Name="@p_NEIGH">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:UserDefined>true</rd:UserDefined>
+        </DataSetParameter>
+        <DataSetParameter Name="@p_RY">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+        </DataSetParameter>
+        <DataSetParameter Name="@p_AA">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+        </DataSetParameter>
+        <DataSetParameter Name="@p_JUR">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT AV.[Roll Year],
+       AG.[Area Code],
+       AG.Area,
+       AG.[Jurisdiction Code],
+       SUBSTRING(AG.Jurisdiction, 1, LEN(AG.Jurisdiction)-5) AS Jurisdiction,
+       AG.[Neighbourhood Code],
+       AG.Neighbourhood,
+       REPLACE (SUBSTRING (AV.[dimFolio_BK],6,LEN(AV.[dimFolio_BK])-6) , '|'  ,'-')  AS [Folio ID] , 
+       AV.[Gross General Value],
+       AV.[Gross Other Value],
+       AV.[Gross School Value],
+       AC.[Actual Use Code],
+       MC.[Manual Class Code],
+       AV.[Net General Value],
+       AV.[Net Other Value],
+       AV.[Net School Value],
+       AV.[General Exemptions Value],
+       AV.[Other Exemptions Value],
+       AV.[School Exemptions Value],
+       AV.[Total Assessed Value],
+       AV.[Total Building Value],
+       AV.[Total Land Value],
+       AV.[Total Actual Value]
+
+
+FROM edw.FactRollSummary AS AV
+     INNER JOIN edw.dimFolio AS FL ON AV.dimFolio_SK = FL.dimFolio_SK  
+	AND AV.dimRollYear_SK = FL.dimRollYear_SK AND FL.dimFolioStatus_BK = '01'
+     INNER JOIN edw.dimAssessmentGeography AS AG ON AV.dimAssessmentGeography_SK = AG.dimAssessmentGeography_SK
+     AND AV.dimRollYear_SK = AG.dimRollYear_SK AND AV.[Current Cycle Flag] = 'Current Cycle Only'
+	INNER JOIN edw.dimManualClass AS MC ON AV.dimManualClass_SK = MC.dimManualClass_SK
+     INNER JOIN edw.dimActualUse AS AC ON AV.dimActualUse_SK = AC.dimActualUse_SK
+
+WHERE  (AG.[Roll Category Code] = @p_RC)
+     AND (AG.[Roll Year] = @p_RY)
+     AND (AG.[Area Code] = @p_AA)
+     AND ((AG.[Jurisdiction Code] = @p_JUR)
+          OR (@p_JUR IS NULL))
+     AND ((AG.[Neighbourhood Code] = @p_NEIGH)
+          OR (@p_NEIGH IS NULL))
+ORDER BY AV.[Roll Year],
+         AG.[Area Code],
+         AG.[Jurisdiction Code],
+         AG.[Neighbourhood Code],
+         [Folio ID];</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Roll_Year">
+        <DataField>Roll Year</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Area_Code">
+        <DataField>Area Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Area">
+        <DataField>Area</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Jurisdiction_Code">
+        <DataField>Jurisdiction Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Jurisdiction">
+        <DataField>Jurisdiction</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Neighbourhood_Code">
+        <DataField>Neighbourhood Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Neighbourhood">
+        <DataField>Neighbourhood</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Folio_ID">
+        <DataField>Folio ID</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Gross_General_Value">
+        <DataField>Gross General Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Gross_Other_Value">
+        <DataField>Gross Other Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Gross_School_Value">
+        <DataField>Gross School Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Net_General_Value">
+        <DataField>Net General Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Actual_Use_Code">
+        <DataField>Actual Use Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Net_Other_Value">
+        <DataField>Net Other Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Manual_Class_Code">
+        <DataField>Manual Class Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Net_School_Value">
+        <DataField>Net School Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="General_Exemptions_Value">
+        <DataField>General Exemptions Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Other_Exemptions_Value">
+        <DataField>Other Exemptions Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="School_Exemptions_Value">
+        <DataField>School Exemptions Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Total_Assessed_Value">
+        <DataField>Total Assessed Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Total_Building_Value">
+        <DataField>Total Building Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Total_Land_Value">
+        <DataField>Total Land Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Total_Actual_Value">
+        <DataField>Total Actual Value</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

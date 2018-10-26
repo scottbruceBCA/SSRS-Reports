@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "PI Subject Area Reports", "PI Subject Area Reports.rptproj", "{1DFC55B9-88A6-48E1-A4BD-FDE453432166}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.Debug|Default.ActiveCfg = Debug
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.Debug|Default.Build.0 = Debug
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.Debug|Default.Deploy.0 = Debug
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.DebugLocal|Default.Build.0 = DebugLocal
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.Release|Default.ActiveCfg = Release
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.Release|Default.Build.0 = Release
+		{1DFC55B9-88A6-48E1-A4BD-FDE453432166}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
